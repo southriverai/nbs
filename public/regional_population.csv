@@ -1,0 +1,145 @@
+year,region,population
+-3100,Africa,400000
+-3100,Asia,500000
+-3100,Europe,80000
+-3100,Latin America and Caribbean,10000
+-3100,Northern America,0
+-3100,Oceania,0
+-3000,Africa,3000000
+-3000,Asia,10000000
+-3000,Europe,1500000
+-3000,Latin America and Caribbean,200000
+-3000,Northern America,0
+-3000,Oceania,0
+-2500,Africa,6000000
+-2500,Asia,15000000
+-2500,Europe,3500000
+-2500,Latin America and Caribbean,500000
+-2500,Northern America,0
+-2500,Oceania,0
+-2000,Africa,12000000
+-2000,Asia,30000000
+-2000,Europe,7000000
+-2000,Latin America and Caribbean,1000000
+-2000,Northern America,0
+-2000,Oceania,0
+-1500,Africa,18000000
+-1500,Asia,45000000
+-1500,Europe,10000000
+-1500,Latin America and Caribbean,2000000
+-1500,Northern America,0
+-1500,Oceania,0
+-1000,Africa,25000000
+-1000,Asia,60000000
+-1000,Europe,13000000
+-1000,Latin America and Caribbean,2000000
+-1000,Northern America,0
+-1000,Oceania,0
+-500,Africa,35000000
+-500,Asia,90000000
+-500,Europe,20000000
+-500,Latin America and Caribbean,5000000
+-500,Northern America,0
+-500,Oceania,0
+1,Africa,45000000
+1,Asia,180000000
+1,Europe,60000000
+1,Latin America and Caribbean,15000000
+1,Northern America,0
+1,Oceania,0
+500,Africa,35000000
+500,Asia,120000000
+500,Europe,50000000
+500,Latin America and Caribbean,10000000
+500,Northern America,0
+500,Oceania,0
+1000,Africa,60000000
+1000,Asia,230000000
+1000,Europe,88000000
+1000,Latin America and Caribbean,24000000
+1000,Northern America,0
+1000,Oceania,2000000
+1200,Africa,70000000
+1200,Asia,260000000
+1200,Europe,95000000
+1200,Latin America and Caribbean,25000000
+1200,Northern America,0
+1200,Oceania,2000000
+1400,Africa,65000000
+1400,Asia,240000000
+1400,Europe,70000000
+1400,Latin America and Caribbean,20000000
+1400,Northern America,0
+1400,Oceania,2000000
+1650,Africa,70000000
+1650,Asia,280000000
+1650,Europe,120000000
+1650,Latin America and Caribbean,15000000
+1650,Northern America,2000000
+1650,Oceania,3000000
+1750,Africa,95000000
+1750,Asia,450000000
+1750,Europe,163000000
+1750,Latin America and Caribbean,15000000
+1750,Northern America,2000000
+1750,Oceania,3000000
+1800,Africa,90000000
+1800,Asia,650000000
+1800,Europe,150000000
+1800,Latin America and Caribbean,19000000
+1800,Northern America,7000000
+1800,Oceania,2000000
+1850,Africa,95000000
+1850,Asia,700000000
+1850,Europe,208000000
+1850,Latin America and Caribbean,38000000
+1850,Northern America,26000000
+1850,Oceania,2000000
+1900,Africa,133000000
+1900,Asia,947000000
+1900,Europe,408000000
+1900,Latin America and Caribbean,74000000
+1900,Northern America,82000000
+1900,Oceania,6000000
+1925,Africa,165000000
+1925,Asia,1050000000
+1925,Europe,480000000
+1925,Latin America and Caribbean,105000000
+1925,Northern America,125000000
+1925,Oceania,9000000
+1950,Africa,228000000
+1950,Asia,1396000000
+1950,Europe,549000000
+1950,Latin America and Caribbean,168000000
+1950,Northern America,172000000
+1950,Oceania,13000000
+1975,Africa,416000000
+1975,Asia,2394000000
+1975,Europe,676000000
+1975,Latin America and Caribbean,325000000
+1975,Northern America,243000000
+1975,Oceania,21000000
+2000,Africa,814000000
+2000,Asia,3720000000
+2000,Europe,727000000
+2000,Latin America and Caribbean,520000000
+2000,Northern America,316000000
+2000,Oceania,31000000
+2010,Africa,1040000000
+2010,Asia,4170000000
+2010,Europe,738000000
+2010,Latin America and Caribbean,590000000
+2010,Northern America,352000000
+2010,Oceania,38000000
+2022,Africa,1200000000
+2022,Asia,4690000000
+2022,Europe,742000000
+2022,Latin America and Caribbean,660000000
+2022,Northern America,375000000
+2022,Oceania,45000000
+2025,Africa,1340000000
+2025,Asia,4750000000
+2025,Europe,742000000
+2025,Latin America and Caribbean,670000000
+2025,Northern America,380000000
+2025,Oceania,47000000
