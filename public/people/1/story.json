@@ -1,4 +1,6 @@
 {
+  "person_number": 1,
+  "story_source": "algorithm_generated",
   "name": "Kushim al-Eanna",
   "wikipedia": "https://en.wikipedia.org/wiki/Kushim",
   "born": -3245,
@@ -6,6 +8,10 @@
   "died": -3182,
   "death_place": "Uruk",
   "age_at_death": 63,
+  "birth_latitude": 31.3242,
+  "birth_longitude": 45.6372,
+  "death_latitude": 31.3242,
+  "death_longitude": 45.6372,
   "title": "A Brief Life of Kushim al-Eanna",
   "story": [
     "Kushim al-Eanna was born in 3245 BCE in the Eanna district of Uruk, within sight of the rising temple platforms dedicated to Inanna. His father brewed beer for temple laborers; his mother wove wool textiles issued as rations to workers and craftsmen.",
@@ -16,5 +22,7 @@
     "In 3188 BCE, when canal flooding damaged granaries near the eastern embankment, Kushim coordinated emergency redistribution to sustain rebuilding crews and prevent unrest.",
     "He died in 3182 BCE during a late-summer fever that swept through the lower districts of Uruk. He was buried beyond the city wall in a modest brick-lined grave. His cylinder seal was placed beside him.",
     "The walls of Uruk eroded. The canals shifted. The temples fell and rose again. But clay remembers. And on baked tablets, pressed five thousand years ago, the name Kushim endures."
-  ]
+  ],
+  "gender": null,
+  "source_birth_year": null
 }

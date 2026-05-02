@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "add-person": "node scripts/add-person-from-wikipedia.mjs"
+    "add-person": "node scripts/add-person-from-wikipedia.mjs",
+    "geocode-stories": "node scripts/geocode-existing-stories.mjs"
   },
   "dependencies": {
     "@types/leaflet": "^1.9.21",

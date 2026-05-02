@@ -1,0 +1,21 @@
+{
+  "person_number": 6942000000,
+  "story_source": "wikipedia_summary",
+  "name": "Tutankhamun",
+  "wikipedia": "https://en.wikipedia.org/wiki/Tutankhamun",
+  "born": -1343,
+  "birthplace": "Amarna",
+  "died": -1324,
+  "death_place": "Thebes",
+  "age_at_death": 19,
+  "birth_latitude": 27.6475,
+  "birth_longitude": 30.9017,
+  "death_latitude": 25.6872,
+  "death_longitude": 32.6396,
+  "gender": "Male",
+  "title": "A Brief Life of Tutankhamun",
+  "story": [
+    "Tutankhamun or Tutankhamen, was the antepenultimate pharaoh of the Eighteenth Dynasty of ancient Egypt, who ruled c. 1332 – 1323 BC. Born Tutankhaten, he instituted the restoration of the traditional polytheistic form of ancient Egyptian religion, undoing a previous shift to the religion known as Atenism. Tutankhamun's reign is considered one of the greatest restoration periods in ancient Egyptian history, and his tomb door proclaims his dedication to illustrative constructions of the ancient Egyptian gods."
+  ],
+  "source_birth_year": -1343
+}

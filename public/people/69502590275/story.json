@@ -1,0 +1,21 @@
+{
+  "person_number": 69502590275,
+  "story_source": "wikipedia_summary",
+  "name": "Anne Frank",
+  "wikipedia": "https://en.wikipedia.org/wiki/Anne_Frank",
+  "born": 1929.4467830253252,
+  "birthplace": "Frankfurt, Germany",
+  "died": 1945.0833333333333,
+  "death_place": "Bergen-Belsen, Germany",
+  "age_at_death": 16,
+  "birth_latitude": 50.1109,
+  "birth_longitude": 8.6821,
+  "death_latitude": 52.7596,
+  "death_longitude": 9.9016,
+  "gender": "Female",
+  "title": "A Brief Life of Anne Frank",
+  "story": [
+    "Annelies Marie Frank was a German-born Jewish diarist and Holocaust victim. She gained worldwide notability posthumously for keeping a diary documenting her life in hiding during the German occupation of the Netherlands. In the diary, she regularly described her family's everyday life in their hiding place in an Amsterdam attic from 1942 until their arrest in 1944."
+  ],
+  "source_birth_year": 1929.4467830253252
+}

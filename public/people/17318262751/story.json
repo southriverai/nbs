@@ -1,0 +1,22 @@
+{
+  "person_number": 17318262751,
+  "story_source": "wikipedia_summary",
+  "name": "Cleopatra",
+  "wikipedia": "https://en.wikipedia.org/wiki/Cleopatra",
+  "born": -68.96714579055441,
+  "birthplace": "Alexandria",
+  "died": -29.386550308008214,
+  "death_place": "Alexandria",
+  "age_at_death": 40,
+  "birth_latitude": 31.2001,
+  "birth_longitude": 29.9187,
+  "death_latitude": 31.2001,
+  "death_longitude": 29.9187,
+  "gender": "Female",
+  "title": "A Brief Life of Cleopatra",
+  "story": [
+    "Cleopatra VII Thea Philopator was Queen of the Ptolemaic Kingdom of Egypt from 51 to 30 BC, and the last active Hellenistic pharaoh. A member of the Ptolemaic dynasty, she was a descendant of its founder Ptolemy I Soter, a Macedonian Greek general and companion of Alexander the Great. Her first language was Koine Greek, and she is the only Ptolemaic ruler known to have learned the Egyptian language, among several others.",
+    "After her death, Egypt became a province of the Roman Empire, marking the end of the Hellenistic period in the Mediterranean, which had begun during the reign of Alexander."
+  ],
+  "source_birth_year": -68.96714579055441
+}

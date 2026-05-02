@@ -1,0 +1,22 @@
+{
+  "person_number": 61127837399,
+  "story_source": "wikipedia_summary",
+  "name": "Napoleon",
+  "wikipedia": "https://en.wikipedia.org/wiki/Napoleon",
+  "born": 1769.6216632443532,
+  "birthplace": "Ajaccio",
+  "died": 1821.3442847364818,
+  "death_place": "Longwood House",
+  "age_at_death": 52,
+  "birth_latitude": 41.9192,
+  "birth_longitude": 8.7386,
+  "death_latitude": -15.9425,
+  "death_longitude": -5.7239,
+  "gender": "Male",
+  "title": "A Brief Life of Napoleon",
+  "story": [
+    "Napoleon Bonaparte, later known by his regnal name Napoleon I, was Emperor of the French from 18 May 1804 until his first abdication in 1814, with a brief restoration during the Hundred Days in 1815. He rose to prominence as a general during the French Revolution and led a series of military campaigns across Europe and the Middle East during the French Revolutionary and Napoleonic Wars.",
+    "As a statesman, he implemented numerous legal and administrative reforms in France and Europe."
+  ],
+  "source_birth_year": 1769.6216632443532
+}
