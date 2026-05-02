@@ -152,6 +152,20 @@
   line-height: 1.5;
 }
 
+.result-wikipedia {
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.result-wikipedia a {
+  color: #a5b4fc;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.result-wikipedia a:hover {
+  color: #c7d2fe;
+}
 
 .result-coords {
   font-size: 1rem;

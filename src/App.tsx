@@ -95,6 +95,47 @@ interface LocationInfo {
   country: string | null
 }
 
+interface KnownPerson {
+  number: number
+  name: string
+  year: number
+  location: string
+  wikipedia: string
+}
+
+/** Last CSV column is always a `https://` Wikipedia URL. */
+function parseNamedPeopleLine(line: string): Omit<KnownPerson, 'year'> & { year: string } | null {
+  const httpStart = line.indexOf('http')
+  if (httpStart === -1) return null
+  const wikipedia = line.slice(httpStart).trim()
+  const prefix = line.slice(0, httpStart).replace(/,\s*$/, '')
+  const first = prefix.indexOf(',')
+  const second = prefix.indexOf(',', first + 1)
+  const third = prefix.indexOf(',', second + 1)
+  if (first === -1 || second === -1 || third === -1) return null
+  return {
+    number: Number(prefix.slice(0, first)),
+    name: prefix.slice(first + 1, second),
+    year: prefix.slice(second + 1, third),
+    location: prefix.slice(third + 1),
+    wikipedia,
+  }
+}
+
+/** Curated story JSON files under `public/` (see person_stories_manifest.json). */
+interface ArchivedStoryFile {
+  title?: string
+  name?: string
+  wikipedia?: string
+  story: string[] | string
+}
+
+function formatArchivedStoryBody(data: ArchivedStoryFile): string {
+  const body = Array.isArray(data.story) ? data.story.join('\n\n') : String(data.story ?? '')
+  if (data.title) return `${data.title}\n\n${body}`
+  return body
+}
+
 const API_KEY_STORAGE = 'nbs_openai_api_key'
 
 async function fetchLifeStory(
@@ -165,15 +206,20 @@ function App() {
   const [story, setStory] = useState<string | null>(null)
   const [storyLoading, setStoryLoading] = useState(false)
   const [storyError, setStoryError] = useState<string | null>(null)
+  const [storySource, setStorySource] = useState<'archive' | 'ai' | null>(null)
+  const [storyManifest, setStoryManifest] = useState<Record<number, string>>({})
   const [data, setData] = useState<PopulationRow[]>([])
   const [regionalData, setRegionalData] = useState<RegionalRow[]>([])
   const [maxPopulation, setMaxPopulation] = useState(0)
+  const [knownPeople, setKnownPeople] = useState<Record<number, KnownPerson>>({})
 
   useEffect(() => {
+    const assetBase = import.meta.env.BASE_URL
     Promise.all([
-      fetch('/total_population.csv').then((res) => res.text()),
-      fetch('/regional_population.csv').then((res) => res.text()),
-    ]).then(([popText, regionalText]) => {
+      fetch(`${assetBase}total_population.csv`).then((res) => res.text()),
+      fetch(`${assetBase}regional_population.csv`).then((res) => res.text()),
+      fetch(`${assetBase}named_people.csv`).then((res) => (res.ok ? res.text() : '')),
+    ]).then(([popText, regionalText, namedText]) => {
       const popLines = popText.trim().split('\n')
       const popRows: PopulationRow[] = popLines.slice(1).map((line) => {
         const parts = line.split(',')
@@ -193,8 +239,78 @@ function App() {
         return { year: Number(year), region, population: Number(population) }
       })
       setRegionalData(regRows)
+
+      const namedLines = namedText.trim().split('\n')
+      const byNumber: Record<number, KnownPerson> = {}
+      for (const line of namedLines.slice(1)) {
+        const row = parseNamedPeopleLine(line)
+        if (!row || Number.isNaN(row.number)) continue
+        const y = Number(row.year)
+        byNumber[row.number] = {
+          number: row.number,
+          name: row.name,
+          year: Number.isFinite(y) ? y : 0,
+          location: row.location,
+          wikipedia: row.wikipedia,
+        }
+      }
+      setKnownPeople(byNumber)
     })
   }, [])
+
+  useEffect(() => {
+    const assetBase = import.meta.env.BASE_URL
+    fetch(`${assetBase}person_stories_manifest.json`)
+      .then((res) => (res.ok ? res.json() : {}))
+      .then((obj: Record<string, string>) => {
+        const m: Record<number, string> = {}
+        for (const [k, v] of Object.entries(obj)) {
+          const n = Number(k)
+          if (!Number.isNaN(n) && typeof v === 'string' && v.trim()) m[n] = v.trim()
+        }
+        setStoryManifest(m)
+      })
+      .catch(() => setStoryManifest({}))
+  }, [])
+
+  useEffect(() => {
+    if (number === null) return
+    const path = storyManifest[number]
+    if (!path) {
+      setStory(null)
+      setStorySource(null)
+      setStoryError(null)
+      return
+    }
+    const assetBase = import.meta.env.BASE_URL
+    let cancelled = false
+    setStoryLoading(true)
+    setStoryError(null)
+    setStory(null)
+    setStorySource(null)
+    fetch(`${assetBase}${path}`)
+      .then((res) => {
+        if (!res.ok) throw new Error('Story file not found')
+        return res.json() as Promise<ArchivedStoryFile>
+      })
+      .then((data) => {
+        if (cancelled) return
+        setStory(formatArchivedStoryBody(data))
+        setStorySource('archive')
+      })
+      .catch(() => {
+        if (cancelled) return
+        setStory(null)
+        setStorySource(null)
+        setStoryError('Could not load archived story.')
+      })
+      .finally(() => {
+        if (!cancelled) setStoryLoading(false)
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [number, storyManifest])
 
   const interpolateLifeExpectancy = (year: number): number => {
     const sorted = [...data].sort((a, b) => a.year - b.year)
@@ -287,6 +403,7 @@ function App() {
     setCoords(c)
     setLocationInfo(null)
     setStory(null)
+    setStorySource(null)
     setStoryError(null)
     if (c) {
       fetchNearestTown(c.lat, c.lng).then(setLocationInfo)
@@ -295,12 +412,14 @@ function App() {
 
   const generateStory = async () => {
     if (!apiKey.trim() || number === null || birthYear === null) return
+    if (storySource === 'archive') return
     setStoryLoading(true)
     setStoryError(null)
     try {
       const summary = formatFullResult()
       const text = await fetchLifeStory(apiKey, summary, number)
       setStory(text)
+      setStorySource('ai')
     } catch (err) {
       setStoryError(err instanceof Error ? err.message : 'Failed to generate story')
     } finally {
@@ -528,6 +647,13 @@ function App() {
       {number !== null && birthYear !== null && (
         <div className="result">
           <p className="result-number">#{number.toLocaleString()}</p>
+          {knownPeople[number]?.wikipedia && (
+            <p className="result-wikipedia">
+              <a href={knownPeople[number].wikipedia} target="_blank" rel="noopener noreferrer">
+                Wikipedia — {knownPeople[number].name}
+              </a>
+            </p>
+          )}
           <p className="result-summary">{formatFullResult()}</p>
           {coords && (
             <p className="result-coords">
@@ -536,15 +662,30 @@ function App() {
           )}
           <p className="result-timestamp">{birthYearToFullDate(birthYear).timestamp}</p>
           <div className="story-section">
-            <button
-              className="generate-story-button"
-              onClick={generateStory}
-              disabled={!apiKey.trim() || storyLoading}
-            >
-              {storyLoading ? 'Generating…' : 'Generate life story'}
-            </button>
-            {storyError && <p className="story-error">{storyError}</p>}
-            {story && <div className="story-text">{story}</div>}
+            {(() => {
+              const hasManifestEntry = number !== null && Boolean(storyManifest[number])
+              const archiveLoading = hasManifestEntry && storyLoading && storySource !== 'archive'
+              const archiveShown = storySource === 'archive' && Boolean(story)
+              const showAiStoryButton =
+                !archiveShown && !archiveLoading && (!hasManifestEntry || (!story && storyError))
+              return (
+                <>
+                  {showAiStoryButton && (
+                    <button
+                      className="generate-story-button"
+                      onClick={generateStory}
+                      disabled={!apiKey.trim() || storyLoading}
+                    >
+                      {storyLoading ? 'Generating…' : 'Generate life story'}
+                    </button>
+                  )}
+                  {archiveLoading && <p className="story-archive-label">Loading archived story…</p>}
+                  {archiveShown && <p className="story-archive-label">Archived story</p>}
+                  {storyError && <p className="story-error">{storyError}</p>}
+                  {story && <div className="story-text">{story}</div>}
+                </>
+              )
+            })()}
           </div>
         </div>
       )}
